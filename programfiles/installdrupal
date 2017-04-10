@@ -1,0 +1,10 @@
+#!/bin/bash
+
+installdrupal_version=1
+
+if [ -z $1 ]; then
+	echo You must provides the first argument to be the hostname.
+	exit
+fi
+
+
