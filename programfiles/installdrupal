@@ -21,8 +21,15 @@ if [ $? != 0 ]; then
 	installdrupal_dependencies
 fi
 
-downloaddrupal_source=$(which addvhost)
+addvhost_source=$(which addvhost)
 if [ $? != 0 ]; then
 	echo did not have installed the addvhost utility.
 	installdrupal_dependencies
 fi
+
+source $addvhost_source
+source $downloaddrupal_source
+
+mv $1 $htdocs_root
+
+echo Don\'t forget to restart the web server.
