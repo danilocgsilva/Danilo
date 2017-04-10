@@ -1,10 +1,18 @@
 #!/bin/bash
 
+# Setting script version
 installdrupal_version=1
 
+# Checking if the first argument, which is required, was provided
 if [ -z $1 ]; then
 	echo You must provides the first argument to be the hostname.
 	exit
 fi
+
+installdrupal_dependencies() {
+	echo This script needs:
+	echo downloaddrupal. Get from: https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/downloaddrupal
+       	echo addvhost. Get from https://raw.githubusercontent.com/danilocgsilva/addvhost3/master/downloaddrupal
+}
 
 
