@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Setting script version
-installdrupal_version=2
+installdrupal_version=3
 
 # Checking if the first argument, which is required, was provided
 if [ -z $1 ]; then
@@ -15,16 +15,18 @@ installdrupal_dependencies() {
     echo addvhost. Get from https://raw.githubusercontent.com/danilocgsilva/addvhost3/master/downloaddrupal
 }
 
-downloaddrupal_source=$(which downloaddrupal)
+downloaddrupal_source=$(which downloaddrupal 2> /dev/null)
 if [ $? != 0 ]; then
 	echo did not have installed the downloaddrupal utility.
 	installdrupal_dependencies
+	exit
 fi
 
 addvhost_source=$(which addvhost)
 if [ $? != 0 ]; then
 	echo did not have installed the addvhost utility.
 	installdrupal_dependencies
+	exit
 fi
 
 source $addvhost_source
