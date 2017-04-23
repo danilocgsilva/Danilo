@@ -11,8 +11,8 @@ fi
 
 installdrupal_dependencies() {
 	echo This script needs:
-	echo downloaddrupal. Get from: https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/downloaddrupal
-    echo addvhost. Get from https://raw.githubusercontent.com/danilocgsilva/addvhost3/master/downloaddrupal
+	echo downloaddrupal. Get from: https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/programfiles/downloaddrupal
+    echo addvhost. Get from https://raw.githubusercontent.com/danilocgsilva/addvhost3/master/programfiles/addvhost
 }
 
 downloaddrupal_source=$(which downloaddrupal 2> /dev/null)
