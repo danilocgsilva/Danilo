@@ -5,6 +5,12 @@ installdrupal_version=4
 # Script source
 installdrupal_fonts_uri=https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/programfiles/downloaddrupal
 
+# Check if ask_mysql exists in the system, so the local database can be created.
+ask_mysql_can_execute=0
+if [ $(which ask_mysql) ]; then
+	ask_mysql_can_execute=1
+fi
+
 # Checking if the first argument, which is required, was provided
 if [ -z $1 ]; then
 	echo You must provides the first argument to be the hostname.
@@ -31,10 +37,24 @@ if [ $? != 0 ]; then
 	exit
 fi
 
+
+## End of checkings. Script execution
+
+# Asks for database information to create one. Skip if the ask_mysql utility is not in the system.
+if [ $ask_mysql_can_execute -eq 1 ]; then
+	echo Provides the database information to create one.
+	source ask_mysql
+	mysqladmin -u$mysql_user -p$mysql_databasepassword -h$mysql_host create $mysql_databasename
+	echo Database $mysql_databasename created.
+else
+	echo Could not ask for mysql database credentials to create it. Download and install the ask_mysql from https://raw.githubusercontent.com/danilocgsilva/ask_mysql/master/programfiles/ask_mysql, so next time it is possible to create the database automatically.
+fi
+
 source $addvhost_source
 source $downloaddrupal_source
 downloaddrupal_download $1 $2
 
 mv $1 $htdocs_root
+
 
 echo Don\'t forget to restart the web server.
