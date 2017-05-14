@@ -7,7 +7,7 @@ installdrupal_fonts_uri=https://raw.githubusercontent.com/danilocgsilva/download
 
 # Check if ask_mysql exists in the system, so the local database can be created.
 ask_mysql_can_execute=0
-if [ $(which ask_mysql) ]; then
+if [ $(which ask_mysql 2> /dev/null) ]; then
 	ask_mysql_can_execute=1
 fi
 
