@@ -17,6 +17,7 @@ if [ -z $1 ]; then
 	exit
 fi
 
+# Called whenever the dependencies are not met and if the script is unable do download them
 installdrupal_dependencies() {
 	echo This script needs:
 	echo downloaddrupal. Get from: https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/programfiles/downloaddrupal
