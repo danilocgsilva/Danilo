@@ -38,7 +38,7 @@ fi
 # Check for addvhost dependency. Tries to download or warns about the dependency missing.
 if ! addvhost_source=$(which addvhost 2> /dev/null); then
 	if which installfromuri > /dev/null 2>&1; then
-		installfromuri https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/programfiles/addvhost
+		installfromuri https://raw.githubusercontent.com/danilocgsilva/addvhost/master/programfiles/addvhost
 	else
 		echo did not have installed the addvhost utility.
 		installdrupal_dependencies
