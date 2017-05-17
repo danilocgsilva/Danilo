@@ -7,8 +7,12 @@ installdrupal_fonts_uri=https://raw.githubusercontent.com/danilocgsilva/download
 
 # Check if ask_mysql exists in the system, so the local database can be created.
 ask_mysql_can_execute=0
-if [ $(which ask_mysql 2> /dev/null) ]; then
-	ask_mysql_can_execute=1
+# First, verify if mysql client is installed in the system
+if which mysql > /dev/null 2>&1; then
+	# Second, verify if ask_mysql utility is installed in the system
+	if [ $(which ask_mysql 2> /dev/null) ]; then
+		ask_mysql_can_execute=1
+	fi
 fi
 
 # Checking if the first argument, which is required, was provided
@@ -56,6 +60,7 @@ fi
 ## End of checkings. Script execution
 
 # Asks for database information to create one. Skip if the ask_mysql utility is not in the system.
+echo ask_mysql_can_execute: $ask_mysql_can_execute
 if [ $ask_mysql_can_execute -eq 1 ]; then
 	echo Provides the database information to create one.
 	source ask_mysql
