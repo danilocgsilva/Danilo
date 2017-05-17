@@ -60,7 +60,6 @@ fi
 ## End of checkings. Script execution
 
 # Asks for database information to create one. Skip if the ask_mysql utility is not in the system.
-echo ask_mysql_can_execute: $ask_mysql_can_execute
 if [ $ask_mysql_can_execute -eq 1 ]; then
 	echo Provides the database information to create one.
 	source ask_mysql
