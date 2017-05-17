@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Setting script version
-installdrupal_version=5
+installdrupal_version=6
 # Script source
 installdrupal_fonts_uri=https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/programfiles/downloaddrupal
 
