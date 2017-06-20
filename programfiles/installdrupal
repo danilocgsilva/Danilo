@@ -1,11 +1,28 @@
 #!/bin/bash
 
+##
 # Setting script version
-installdrupal_version=6
+#
+installdrupal_version=7
+
+##
 # Script source
+#
 installdrupal_fonts_uri=https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/programfiles/downloaddrupal
 
+##
+# Called whenever the dependencies are not met and if the script is unable do download them
+#
+installdrupal_dependencies() {
+	echo This script needs:
+	echo downloaddrupal. Get from: https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/programfiles/downloaddrupal
+    echo addvhost. Get from https://raw.githubusercontent.com/danilocgsilva/addvhost3/master/programfiles/addvhost
+	echo ask_shell. Get from https://raw.githubusercontent.com/danilocgsilva/ask_shell/master/programfiles/askshell
+}
+
+##
 # Check if ask_mysql exists in the system, so the local database can be created.
+#
 ask_mysql_can_execute=0
 # First, verify if mysql client is installed in the system
 if which mysql > /dev/null 2>&1; then
@@ -15,28 +32,35 @@ if which mysql > /dev/null 2>&1; then
 	fi
 fi
 
-# Checking if the first argument, which is required, was provided
-if [ -z $1 ]; then
-	echo You must provides the first argument to be the hostname.
-	exit
-fi
-
-# Called whenever the dependencies are not met and if the script is unable do download them
-installdrupal_dependencies() {
-	echo This script needs:
-	echo downloaddrupal. Get from: https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/programfiles/downloaddrupal
-    echo addvhost. Get from https://raw.githubusercontent.com/danilocgsilva/addvhost3/master/programfiles/addvhost
-}
-
+##
 # Check for downloaddrupal dependency. Tries to download or warns about the dependency missing.
+#
 if ! downloaddrupal_source=$(which downloaddrupal 2> /dev/null); then
 	if which installfromuri > /dev/null 2>&1; then
 		installfromuri https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/programfiles/downloaddrupal
 	else
-		echo did not have installed the downloaddrupal utility.
+		echo Did not have installed the downloaddrupal utility.
 		installdrupal_dependencies
 		exit
 	fi
+fi
+
+if ! askshell_source=$(which askshell 2> /dev/null); then
+	if which askshell > /dev/null 2>&1; then
+		installfromuri https://raw.githubusercontent.com/danilocgsilva/ask_shell/master/programfiles/askshell
+	else
+		echo Did not have installed the askshell utility.
+		installdrupal_dependencies
+		exit
+	fi
+fi
+
+##
+# Checking if the first argument, which is required, was provided
+#
+if [ -z $1 ]; then
+	echo You must provides the first argument to be the hostname.
+	exit
 fi
 
 # Check for addvhost dependency. Tries to download or warns about the dependency missing.
@@ -50,12 +74,6 @@ if ! addvhost_source=$(which addvhost 2> /dev/null); then
 	fi
 fi
 
-#addvhost_source=$(which addvhost)
-#if [ $? != 0 ]; then
-#	echo did not have installed the addvhost utility.
-#	installdrupal_dependencies
-#	exit
-#fi
 
 ## End of checkings. Script execution
 
