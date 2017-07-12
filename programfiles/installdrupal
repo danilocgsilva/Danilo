@@ -46,7 +46,7 @@ if ! downloaddrupal_source=$(which downloaddrupal 2> /dev/null); then
 fi
 
 if ! askshell_source=$(which askshell 2> /dev/null); then
-	if which askshell > /dev/null 2>&1; then
+	if which installfromuri > /dev/null 2>&1; then
 		installfromuri https://raw.githubusercontent.com/danilocgsilva/ask_shell/master/programfiles/askshell
 	else
 		echo Did not have installed the askshell utility.
