@@ -37,7 +37,7 @@ fi
 #
 if ! downloaddrupal_source=$(which downloaddrupal 2> /dev/null); then
 	if which installfromuri > /dev/null 2>&1; then
-		installfromuri https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/programfiles/downloaddrupal
+		installfromuri $installdrupal_fonts_uri
 	else
 		echo Did not have installed the downloaddrupal utility.
 		installdrupal_dependencies
