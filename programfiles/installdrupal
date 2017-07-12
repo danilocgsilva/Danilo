@@ -8,7 +8,7 @@ installdrupal_version=7
 ##
 # Script source
 #
-installdrupal_fonts_uri=https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/programfiles/downloaddrupal
+installdrupal_fonts_uri=https://raw.githubusercontent.com/danilocgsilva/download_drupal/master/src/downloaddrupal
 
 ##
 # Called whenever the dependencies are not met and if the script is unable do download them
